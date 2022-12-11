@@ -1,0 +1,30 @@
+name: Google Chat Text Message
+description: Send google Chat Text message to a Space using Webhook
+author: teknatha136
+branding:
+  icon: terminal
+  color: white
+inputs:
+  google-chat-webhook:
+    description: The webhook for space you want to send message to. Docs https://developers.google.com/chat/how-tos/webhooks#create_a_webhook
+    required: true
+    default: latest
+  text-message:
+    description: Actual message you want to send.
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+      # Install curl incase
+    - name: Install curl
+      run: sudo apt-get install -y curl
+      shell: bash
+
+    - name: Send Google Chat Message
+      run: send-message.sh
+      shell: bash
+      env:
+        GOOGLE_CHAT_WEBHOOK: ${{ inputs.google-chat-webhook }}
+        TEXT_MESSAGE: ${{ inputs.text-message }}

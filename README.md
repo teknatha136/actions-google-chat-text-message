@@ -5,7 +5,7 @@ Note: This action is only for sending text messages, does not support Card messa
 TO make use of this action add the following steps to your GitHub Action workflow:
 
 ```yaml
-      - uses: ByteBhutan/actions-google-chat-text-message@main
+      - uses: teknatha136/actions-google-chat-text-message@main
         with:
           google-chat-webhook: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
           text-message: The actual Message
@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - uses: ByteBhutan/actions-google-chat-text-message@main
+      - uses: teknatha136/actions-google-chat-text-message@main
         with:
           google-chat-webhook: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
           text-message: Hello,\nThis is a test message.\nMessage sent by ${{ github.actor }}
